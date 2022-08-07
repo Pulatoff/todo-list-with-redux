@@ -3,7 +3,9 @@ import TodoList from "./TodoList";
 import { useSelector } from "react-redux";
 
 const TodoItem = ({ removeTodo, completedTodo }) => {
-  const todos = useSelector((store) => store.todos.todos);
+  const todos = useSelector((store) => {
+    return store.todos.todos;
+  });
   return (
     <ul>
       {todos.map((val) => {

@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux/es/exports";
 import { removeTodo, completedTodo } from "../store/todoSlice";
 
-const TodoList = ({ id, completed, text }) => {
+const TodoList = ({ id, completed, title }) => {
   const dispatch = useDispatch();
 
   // const removeTodo = () => dispatch(removeTodo(id));
@@ -15,7 +15,7 @@ const TodoList = ({ id, completed, text }) => {
           dispatch(completedTodo({ id }));
         }}
       />
-      <span>{text}</span>
+      <span>{title}</span>
       <span className="delete" onClick={() => dispatch(removeTodo({ id }))}>
         &times;
       </span>

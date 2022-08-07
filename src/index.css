@@ -16,8 +16,14 @@ code {
 }
 
 ul {
-  width: 200px;
+  display: flex;
+  flex-direction: column;
   list-style: none;
+  gap: 20px;
+}
+
+li {
+  width: 300px;
   display: flex;
   justify-content: space-between;
 }
