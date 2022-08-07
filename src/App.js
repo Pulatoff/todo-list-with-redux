@@ -1,4 +1,6 @@
 import { useRef, useState } from "react";
+import TodoItem from "./components/TodoItem";
+import InputField from "./components/InputField";
 import "./App.css";
 
 function App() {
@@ -28,39 +30,22 @@ function App() {
   };
 
   const completedTodo = (id) => {
-    todos.filter((val) => {
-      if (val.id !== id) return val;
-
-      return {
-        ...val,
-        completed: !val.completed,
-      };
+    todos.map((val) => {
+      if (val.id === id) {
+        val.completed = !val.completed;
+      }
+      return val;
     });
   };
 
   return (
     <div>
-      <label>
-        <input type="text" ref={valueRef} placeholder="enter what you do" />
-        <button onClick={addTodos}>Enter</button>
-      </label>
-      <ul>
-        {todos.map((val) => {
-          return (
-            <li key={val.id}>
-              <input
-                type="checkbox"
-                checked={val.checked}
-                onChange={() => completedTodo(val.id)}
-              />
-              <span>{val.text}</span>
-              <span className="delete" onClick={() => removeTodo(val.id)}>
-                &times;
-              </span>
-            </li>
-          );
-        })}
-      </ul>
+      <InputField valueRef={valueRef} addTodos={addTodos} />
+      <TodoItem
+        todos={todos}
+        removeTodo={removeTodo}
+        completedTodo={completedTodo}
+      />
     </div>
   );
 }
