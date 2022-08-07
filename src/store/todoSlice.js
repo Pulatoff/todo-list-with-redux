@@ -17,6 +17,20 @@ export const getAllTodos = createAsyncThunk(
   }
 );
 
+export const deleteTodo = createAsyncThunk(
+  "todos/deleteTodo",
+  async function (id, { rejectWithValue, dispatch }) {
+    try {
+      await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
+        method: "DELETE",
+      });
+      dispatch(removeTodo({ id }));
+    } catch (e) {
+      return rejectWithValue(e.message);
+    }
+  }
+);
+
 const todoSlice = createSlice({
   name: "todos",
   initialState: {
